@@ -1,9 +1,7 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
-//import java.io.FileWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -142,9 +140,9 @@ public class Project {
 			int thisYear = today.getYear();
 			int thisMonth = today.getMonthValue();
 			int thisDay = today.getDayOfMonth();
-			int dueYear = 0;
-			int dueMonth = 0;
-			int dueDay = 0;
+			int dueYear;
+			int dueMonth;
+			int dueDay;
 			int maxNumberOfDays = 0;
 
 			// While loop to get year
@@ -223,16 +221,11 @@ public class Project {
 	 * 
 	 * @param loggedProject <br>
 	 *                      CSV string containing details of project
-	 * @param people        <br>
-	 *                      File containing details of people objects namely
-	 *                      customers, architects and contractors
 	 * @param persons       <br>
 	 *                      ArrayList of Person objects
-	 * @throws FileNotFoundException <br>
-	 *                               Exception thrown if file not found
 	 */
 	public Project(String loggedProject, ArrayList<Person> persons) {
-		loggedProject.strip();
+		loggedProject = loggedProject.strip();
 		String[] existingProject = loggedProject.split(", ");
 
 		this.projectNumber = existingProject[0];
@@ -361,7 +354,7 @@ public class Project {
 
 	// Call all attributes
 	/**
-	 * Method to obtain a string detailing all project details in an easy to read
+	 * Method to obtain a string detailing all project details in an easy-to-read
 	 * format
 	 * 
 	 * @return String
@@ -384,7 +377,7 @@ public class Project {
 		output += "\nProject Manager:\n\t" + projectManager.getName();
 		output += "\nStructural Engineer:\n\t" + structuralEngineer.getName();
 		output += "\nCustomer:\n\t" + customer.getName();
-		if (completed == false) {
+		if (!completed) {
 			output += "\nProject completed:\n\tNo";
 		} else {
 			output += "\nProject completed:\n\tYes";
@@ -552,7 +545,7 @@ public class Project {
 				invoice.createNewFile();
 
 				String toInvoice = "\tPOISED INVOICE\n";
-				toInvoice += "invoice adressed to:\n";
+				toInvoice += "invoice addressed to:\n";
 				toInvoice += finaliseProject.customer.getPerson() + "\n";
 				toInvoice += "Date completed: " + LocalDate.now() + "\n";
 				toInvoice += finaliseProject.toString();
