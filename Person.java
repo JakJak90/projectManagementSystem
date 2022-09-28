@@ -6,7 +6,7 @@ import java.util.Scanner;
  * projectManagementSystem class.
  * 
  * @author Jason Kelderman
- * @version 1.1
+ * @version 1.1.1
  *
  */
 public class Person {
@@ -57,16 +57,9 @@ public class Person {
 	/**
 	 * Overload constructor method for creating an object from previously logged
 	 * person.
-	 * 
-	 * @param designation <br>
-	 *                    String denoting customer, architect or contractor
-	 * @param fullName    <br>
-	 *                    String consisting of person firstName and lastName
-	 *                    attributes
-	 * @param people      <br>
-	 *                    File storing person details in CSV format
-	 * @throws FileNotFoundException <br>
-	 *                               Exception thrown if file not found
+	 *
+	 * @param person      <br>
+	 *                    String detailing existing person details fetched from SQL DB
 	 */
 	public Person(String person) {
 		String[] existingPersonDetails = person.split(", ");
@@ -94,8 +87,7 @@ public class Person {
 	 * @return String attribute firstName and lastName
 	 */
 	public String getName() {
-		String output = String.format("%s %s", firstName, lastName);
-		return output;
+		return String.format("%s %s", firstName, lastName);
 	}
 
 	/**
@@ -152,7 +144,7 @@ public class Person {
 
 	// Call all attributes
 	/**
-	 * Method to obtain a string detailing all person details in an easy to read
+	 * Method to obtain a string detailing all person details in an easy-to-read
 	 * format
 	 * 
 	 * @return String
@@ -183,8 +175,7 @@ public class Person {
 		for (Person all : peopleList) {
 			if (inputName.equalsIgnoreCase(all.getName()) && designation.equalsIgnoreCase(all.getDesignation())) {
 				int index = peopleList.indexOf(all);
-				Person toBeEdited = peopleList.remove(index);
-				return toBeEdited;
+				return peopleList.remove(index);
 			}
 		}
 		return null;
@@ -192,9 +183,8 @@ public class Person {
 	}
 
 	public String personDetails() {
-		String toPeople = designation + ", " + firstName + ", " + lastName + ", " + phoneNumber + ", " + email + ", "
+		return designation + ", " + firstName + ", " + lastName + ", " + phoneNumber + ", " + email + ", "
 				+ address + "\n";
-		return toPeople;
 	}
 
 	/**
