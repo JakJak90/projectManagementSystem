@@ -26,8 +26,8 @@ public class projectManagementSystem {
 
 		try {
 			// Declare global variables
-			ArrayList<Project> projects = new ArrayList<Project>();
-			ArrayList<Person> people = new ArrayList<Person>();
+			ArrayList<Project> projects = new ArrayList<>();
+			ArrayList<Person> people = new ArrayList<>();
 			String projectsContents;
 			String peopleContents;
 			Project projectToUpdate;
